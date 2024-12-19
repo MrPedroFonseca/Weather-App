@@ -12,7 +12,6 @@ import {
   MeasurementSwitchButton,
 } from "./Components/GlobalComponents.js";
 
-// Styled Components
 const AppContainer = styled.div`
   text-align: center;
   background-color: ${(props) => props.theme.colors.background};
@@ -98,6 +97,7 @@ const App = () => {
 
           coord = response.data;
           currTemp = response.data.main.temp;
+
           if (unit === "metric") {
             setWeatherCelsius(response.data);
             setWeatherFahrenheit(null);
@@ -116,12 +116,11 @@ const App = () => {
             `https://api.openweathermap.org/data/2.5/forecast?lat=${coord.coord.lat}&lon=${coord.coord.lon}&units=${unit}&exclude=current,minutely,daily,alerts&appid=${API_KEY}`
           );
 
+          // group the data by day
           const groupedData = groupByDay(forecastResponse.data.list, currTemp);
           setForecastData(groupedData);
         } catch (error) {
           console.error("Error fetching weather data:", error);
-          //console.log("Coord ---> ", coord.coord);
-          //console.log("UNIT ---> ", unit);
           setWeatherCelsius(null);
           setWeatherFahrenheit(null);
         }
@@ -136,14 +135,14 @@ const App = () => {
   const groupByDay = (list, currTemp) => {
     const dailyTemps = {};
 
-    const next24HoursTemps = []; // Array to store temperatures for the next 24 hours
+    const next24HoursTemps = []; // Array to store temperatures for the next 24 hours (data for the chart)
 
     const currentTimestamp = Date.now() / 1000; // Current timestamp in seconds
 
     list.forEach((item) => {
       const date = item.dt_txt.split(" ")[0]; // Extract the date part
       const temp = item.main.temp;
-      const weatherCondition = item.weather[0].main; // Get the main weather condition (e.g., Clear, Rain, etc.)
+      const weatherCondition = item.weather[0].main; // Get the main weather condition (e.g., Clear, Rain, etc.) for the emoji...
 
       // getting data for the chart
       if (item.dt <= currentTimestamp + 27 * 3600) {
@@ -168,6 +167,7 @@ const App = () => {
       }
     });
 
+    // API only give data 3 in 3 hours 
     generateMissingTemperatures(next24HoursTemps, currTemp);
 
     // Todays Date

@@ -35,8 +35,6 @@ const chartContainerStyle = {
 };
 
 const Chart = ({ chartData, unit }: { chartData: any; unit: string }) => {
-  // Simulated temperature data for the last 24 hours
-
   const generateHourlyData = () => {
     const temperatures: number[] = [];
     const labels: string[] = [];
@@ -44,7 +42,6 @@ const Chart = ({ chartData, unit }: { chartData: any; unit: string }) => {
     let index = 0;
 
     for (const temp of chartData) {
-      // Use 'for...of' to iterate over values
       if (index < 24) {
         // Limit to 24 hours of data
         labels.push(temp.time.slice(11, 16)); // Extract "HH:mm" from time
@@ -66,7 +63,6 @@ const Chart = ({ chartData, unit }: { chartData: any; unit: string }) => {
         data: temperatures,
         borderColor: "rgba(41, 80, 228, 1)",
         backgroundColor: "rgba(41, 80, 228, 0.2)",
-        //fill: true,
       },
     ],
   };
@@ -76,7 +72,7 @@ const Chart = ({ chartData, unit }: { chartData: any; unit: string }) => {
     plugins: {
       legend: {
         display: true,
-        position: "top", // No error now, as "top" is valid
+        position: "top",
       },
       title: {
         display: true,
