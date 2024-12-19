@@ -5,8 +5,8 @@ This project is a simple weather application built with  React JS. Follow the st
 # Prerequisites
 
 Make sure you have the following installed on your system:
-    - Node.js (version 14 or higher recommended)
-    - npm (comes with Node.js)
+- Node.js (version 14 or higher recommended)
+- npm (comes with Node.js)
 
 # Installation and Setup
 
