@@ -4,20 +4,28 @@ This project is a simple weather application built with  React JS. Follow the st
 
 # Prerequisites
 
-- Make sure you have the following installed on your system:
+Make sure you have the following installed on your system:
     - Node.js (version 14 or higher recommended)
     - npm (comes with Node.js)
 
 # Installation and Setup
 
 1. Clone the repository:
- - ### git clone https://github.com/MrPedroFonseca/Weather-App.git
+```bash
+    git clone https://github.com/MrPedroFonseca/Weather-App.git
+```
 2. Navigate to the project directory:
- - ### cd Weather-App
+```bash
+    cd Weather-App
+ ```
 3. Install dependencies:
- - ### npm install
+```bash
+    npm install
+  ```
 4. Start the application:
- - ### npm start
+```bash
+    npm start
+  ```
 
 # Usage
 
